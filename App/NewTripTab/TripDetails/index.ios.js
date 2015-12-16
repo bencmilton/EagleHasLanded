@@ -1,19 +1,20 @@
 'use strict';
 
-import NewTripAddContacts from './NewTripAddContacts';
-import Button from './Button';
-import SetLocation from './SetLocation';
 import React, {
   View,
   ScrollView,
   Component,
-  StyleSheet,
   TouchableHighlight,
   Text,
   TextInput,
   DatePickerIOS,
   ActivityIndicatorIOS,
 } from 'react-native';
+
+import NewTripAddContacts from '../AddContacts';
+import Button from '../../Common/Button';
+import SetLocation from '../SetLocation';
+import styles from './styles';
 
 const defaultProps = {
   departureDate: new Date(),
@@ -68,7 +69,6 @@ class NewTripDetails extends Component {
     });
   }
   render() {
-    console.log('')
     if (!this.state.showDatePicker) {
       return (
         <View style={styles.container}>
@@ -131,45 +131,6 @@ class NewTripDetails extends Component {
     }
   }
 }
-
-const styles = StyleSheet.create({
-  datePickerContainer: {
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 600,
-  },
-  container: {
-    padding: 30,
-    marginTop: 65,
-    flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: '#3B3738'
-  },
-  card: {
-    height: 200,
-    width: 250,
-    backgroundColor: '#FAFAFA',
-    borderRadius: 10,
-    padding: 10,
-    margin: 15,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    color: 'gray',
-    textAlign: 'center',
-  },
-  input: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 20,
-  },
-});
 
 NewTripDetails.defaultProps = defaultProps;
 

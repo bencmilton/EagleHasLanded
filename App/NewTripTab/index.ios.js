@@ -1,13 +1,14 @@
 'use strict';
 
-import NewTripDetails from './NewTripDetails';
 import React, {
   Component,
-  StyleSheet,
   Text,
   View,
   NavigatorIOS,
 } from 'react-native';
+
+import NewTripDetails from './TripDetails';
+import styles from './styles';
 
 class NewTripTab extends Component {
   render() {
@@ -23,11 +24,5 @@ class NewTripTab extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  navigationContainer: {
-    flex: 1,
-  },
-});
 
 export default NewTripTab;

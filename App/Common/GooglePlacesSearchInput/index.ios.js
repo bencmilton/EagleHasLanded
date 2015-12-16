@@ -1,15 +1,13 @@
 'use strict';
 
-var {GooglePlacesAutocomplete} = require('react-native-google-places-autocomplete');
 import React, {
-  View,
   Component,
-  Text,
-  TextInput,
-  StyleSheet
 } from 'react-native';
 
-class SetLocation extends Component {
+var {GooglePlacesAutocomplete} = require('react-native-google-places-autocomplete');
+import styles from './styles';
+
+class GooglePlacesSearchInput extends Component {
   render() {
     return (
       <GooglePlacesAutocomplete
@@ -55,14 +53,4 @@ class SetLocation extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  input: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-  },
-});
-
-export default SetLocation;
+export default GooglePlacesSearchInput;

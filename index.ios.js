@@ -1,12 +1,13 @@
 'use strict';
 
-import NewTripTab from './NewTripTab';
-import CurrentTripsTab from './CurrentTripsTab';
 import React, {
   Component,
   AppRegistry,
   TabBarIOS
 } from 'react-native';
+
+import NewTripTab from './App/NewTripTab';
+import CurrentTripsTab from './App/CurrentTripsTab';
 
 exports.framework = 'React';
 exports.title = 'Eagle Has Landed';
@@ -16,7 +17,7 @@ class EagleHasLanded extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'newTrip'
+      selectedTab: 'newTrip',
     }
   }
   render() {
@@ -26,23 +27,17 @@ class EagleHasLanded extends Component {
           selected={this.state.selectedTab === 'newTrip'}
           icon={require('./car189.png')}
           title='New Trip'
-          onPress={() => {
-                      this.setState({
-                          selectedTab: 'newTrip'
-                      });
-                  }}>
-          <NewTripTab/>
+          onPress={() => this.setState({selectedTab: 'newTrip'})}
+        >
+          <NewTripTab />
         </TabBarIOS.Item>
         <TabBarIOS.Item
           selected={this.state.selectedTab === 'currentTrips'}
           icon={require('./map32.png')}
           title='Current Trips'
-          onPress={() => {
-                      this.setState({
-                          selectedTab: 'currentTrips'
-                      });
-                  }}>
-          <CurrentTripsTab/>
+          onPress={() => this.setState({selectedTab: 'currentTrips'})}
+        >
+          <CurrentTripsTab />
         </TabBarIOS.Item>
       </TabBarIOS>
     );

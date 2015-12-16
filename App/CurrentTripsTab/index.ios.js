@@ -1,11 +1,12 @@
 'use strict';
 
 import React, {
-  StyleSheet,
   View,
   Text,
   Component
 } from 'react-native';
+
+import styles from './styles';
 
 class CurrentTripsTab extends Component {
   render() {
@@ -18,17 +19,5 @@ class CurrentTripsTab extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  description: {
-    fontSize: 20,
-    backgroundColor: 'white'
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-});
 
 export default CurrentTripsTab;
