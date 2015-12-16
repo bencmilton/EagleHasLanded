@@ -4,9 +4,16 @@ import React, {
   TouchableHighlight,
   Component,
   Text,
+  PropTypes,
 } from 'react-native';
 
 import styles from './styles';
+
+const propTypes = {
+  style: PropTypes.style,
+  onPress: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
+};
 
 class Button extends Component {
   render() {
@@ -16,8 +23,10 @@ class Button extends Component {
           {this.props.text}
         </Text>
       </TouchableHighlight>
-    )
+    );
   }
 }
+
+Button.propTypes = propTypes;
 
 export default Button;

@@ -8,10 +8,15 @@ import React, {
   TouchableHighlight,
   Text,
   TextInput,
+  PropTypes,
 } from 'react-native';
 
 import Button from '../Button';
 import styles from './styles';
+
+const propTypes = {
+  contacts: PropTypes.array.isRequired,
+};
 
 class ContactPicker extends Component {
   constructor(props) {
@@ -20,17 +25,34 @@ class ContactPicker extends Component {
     this.state = {
       dataSource: ds.cloneWithRows(this.props.contacts),
       text: '',
-    }
+    };
   }
   reformatPhoneNumber = number => {
-    number = number.replace(/\D/g,'');
-    number = number[0] === '1' ? number.slice(1, number.length) : number;
-    const areaCode = number.slice(0, 3);
-    const first3 = number.slice(3, 6);
-    const last4 = number.slice(6);
+    let formattedNumber = number.replace(/\D/g, '');
+    formattedNumber = formattedNumber[0] === '1' ? formattedNumber.slice(1, formattedNumber.length) : formattedNumber;
+    const areaCode = formattedNumber.slice(0, 3);
+    const first3 = formattedNumber.slice(3, 6);
+    const last4 = formattedNumber.slice(6);
     return `(${areaCode}) ${first3}-${last4}`;
   }
-  renderRow = (rowData, sectionID, rowID) => {
+  filterContacts = text => {
+    const filteredContacts = this.props.contacts.filter(contact => {
+      if (contact.givenName && contact.givenName.toUpperCase().indexOf(text.toUpperCase()) > -1) {
+        return contact;
+      } else if (contact.familyName && contact.familyName.toUpperCase().indexOf(text.toUpperCase()) > -1) {
+        return contact;
+      } else {
+        return false;
+      }
+    });
+
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.setState({
+      dataSource: ds.cloneWithRows(filteredContacts),
+      text: text,
+    });
+  }
+  renderRow = rowData => {
     const phoneNum = this.reformatPhoneNumber(rowData.phoneNumbers[0].number);
     return (
       <TouchableHighlight onPress={() => this.props.addToSelectedContacts(rowData)}>
@@ -43,24 +65,7 @@ class ContactPicker extends Component {
           <View style={styles.separator} />
         </View>
       </TouchableHighlight>
-    )
-  }
-  filterContacts = text => {
-    const filteredContacts = this.props.contacts.filter(contact => {
-      if (contact.givenName && contact.givenName.toUpperCase().indexOf(text.toUpperCase()) > -1) {
-        return contact;
-      } else if (contact.familyName && contact.familyName.toUpperCase().indexOf(text.toUpperCase()) > -1) {
-        return contact;
-      } else {
-        return false
-      }
-    });
-
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.setState({
-      dataSource: ds.cloneWithRows(filteredContacts),
-      text: text,
-    });
+    );
   }
   render() {
     return (
@@ -69,12 +74,12 @@ class ContactPicker extends Component {
           style={styles.input}
           onChangeText={this.filterContacts}
           value={this.state.text}
-          placeholder='Search'
+          placeholder="Search"
         />
         <View style={styles.buttonRow}>
           <Button
             style={{marginLeft: 15}}
-            text='Done Adding Contacts'
+            text="Done Adding Contacts"
             onPress={this.props.toggleAddingContacts}
           />
         </View>
@@ -86,8 +91,10 @@ class ContactPicker extends Component {
           />
         </ScrollView>
       </View>
-    )
+    );
   }
 }
+
+ContactPicker.propTypes = propTypes;
 
 export default ContactPicker;

@@ -16,7 +16,7 @@ export default StyleSheet.create({
     marginTop: 65,
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: '#3B3738'
+    backgroundColor: '#3B3738',
   },
   card: {
     height: 200,

@@ -4,11 +4,18 @@ import React, {
   View,
   Component,
   Text,
-  TextInput,
+  PropTypes,
 } from 'react-native';
 
 import GooglePlacesSearchInput from '../../Common/GooglePlacesSearchInput';
 import styles from './styles';
+
+const propTypes = {
+  header: PropTypes.string.isRequired,
+  onChangeText: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+};
 
 class SetLocation extends Component {
   render() {
@@ -23,8 +30,10 @@ class SetLocation extends Component {
           placeholder={this.props.placeholder}
         />
       </View>
-    )
+    );
   }
 }
+
+SetLocation.propTypes = propTypes;
 
 export default SetLocation;

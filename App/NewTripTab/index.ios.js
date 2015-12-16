@@ -2,8 +2,6 @@
 
 import React, {
   Component,
-  Text,
-  View,
   NavigatorIOS,
 } from 'react-native';
 
@@ -16,9 +14,9 @@ class NewTripTab extends Component {
       <NavigatorIOS
         style={styles.navigationContainer}
         initialRoute={{
-            title: 'New Trip: Details',
-            component: NewTripDetails,
-            backButtonTitle: 'Details',
+          title: 'New Trip: Details',
+          component: NewTripDetails,
+          backButtonTitle: 'Details',
         }}
       />
     );

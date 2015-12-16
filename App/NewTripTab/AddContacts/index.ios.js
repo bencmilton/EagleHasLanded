@@ -3,7 +3,6 @@
 import React, {
   Component,
   Text,
-  Image,
   TouchableHighlight,
   View,
   ActivityIndicatorIOS,
@@ -16,7 +15,7 @@ import ContactPicker from '../../Common/ContactPicker';
 import Button from '../../Common/Button';
 import styles from './styles';
 
-let Composer = require('NativeModules').RNMessageComposer;
+const Composer = require('NativeModules').RNMessageComposer;
 
 class NewTripAddContacts extends Component {
   constructor(props) {
@@ -27,7 +26,7 @@ class NewTripAddContacts extends Component {
       addingContacts: false,
       tripName: 'New Trip',
       editingTripName: false,
-    }
+    };
   }
   componentDidMount() {
     Contacts.getAll((err, contacts) => {
@@ -36,9 +35,9 @@ class NewTripAddContacts extends Component {
       } else {
         this.setState({
           contacts: contacts.filter(contact => contact.phoneNumbers.length),
-        })
+        });
       }
-    })
+    });
   }
   addToSelectedContacts = contact => {
     this.setState({
@@ -49,61 +48,61 @@ class NewTripAddContacts extends Component {
   toggleAddingContacts = () => {
     this.setState({
       addingContacts: !this.state.addingContacts,
-    })
+    });
   }
   sendMessage = () => {
     Composer.composeMessageWithArgs(
       {
-        'messageText':'The Eagle Has Landed!',
+        'messageText': 'The Eagle Has Landed!',
         'recipients': this.state.selectedContacts.map(contact => contact.phoneNumbers[0].number),
       },
       (result) => {
-        switch(result) {
-          case Composer.Sent:
-            AlertIOS.alert(
-              'Alert',
-              'Message Sent!',
-              [
-                {text: 'OK', onPress: () => console.log('OK Pressed!')},
-              ]
-            );
-            break;
-          case Composer.Cancelled:
-            AlertIOS.alert(
-              'Alert',
-              'User cancelled sending the message',
-              [
-                {text: 'OK', onPress: () => console.log('OK Pressed!')},
-              ]
-            );
-            break;
-          case Composer.Failed:
-            AlertIOS.alert(
-              'Alert',
-              'Failed to send the message!',
-              [
-                {text: 'OK', onPress: () => console.log('OK Pressed!')},
-              ]
-            );
-            break;
-          case Composer.NotSupported:
-            AlertIOS.alert(
-              'Alert',
-              'This device does not support sending texts',
-              [
-                {text: 'OK', onPress: () => console.log('OK Pressed!')},
-              ]
-            );
-            break;
-          default:
-            AlertIOS.alert(
-              'Alert',
-              'Something unexpected happened!',
-              [
-                {text: 'OK', onPress: () => console.log('OK Pressed!')},
-              ]
-            );
-            break;
+        switch (result) {
+        case Composer.Sent:
+          AlertIOS.alert(
+            'Alert',
+            'Message Sent!',
+            [
+              {text: 'OK', onPress: () => console.log('OK Pressed!')},
+            ]
+          );
+          break;
+        case Composer.Cancelled:
+          AlertIOS.alert(
+            'Alert',
+            'User cancelled sending the message',
+            [
+              {text: 'OK', onPress: () => console.log('OK Pressed!')},
+            ]
+          );
+          break;
+        case Composer.Failed:
+          AlertIOS.alert(
+            'Alert',
+            'Failed to send the message!',
+            [
+              {text: 'OK', onPress: () => console.log('OK Pressed!')},
+            ]
+          );
+          break;
+        case Composer.NotSupported:
+          AlertIOS.alert(
+            'Alert',
+            'This device does not support sending texts',
+            [
+              {text: 'OK', onPress: () => console.log('OK Pressed!')},
+            ]
+          );
+          break;
+        default:
+          AlertIOS.alert(
+            'Alert',
+            'Something unexpected happened!',
+            [
+              {text: 'OK', onPress: () => console.log('OK Pressed!')},
+            ]
+          );
+          break;
         }
       }
     );
@@ -111,41 +110,41 @@ class NewTripAddContacts extends Component {
   render() {
     if (this.state.contacts.length && !this.state.addingContacts) {
       let sendButton;
-      let tripName;
+      let tripNameHeading;
       let editTripNameButtonText;
       let chosenContactsList = 'None';
       if (this.state.selectedContacts.length) {
         sendButton = (
           <Button
-            text='Send Message'
+            text="Send Message"
             onPress={this.sendMessage}
           />
         );
         chosenContactsList = this.state.selectedContacts.map(contact => `${contact.givenName} ${contact.familyName} `);
-      };
+      }
 
       if (this.state.editingTripName) {
-        tripName = (
+        tripNameHeading = (
           <TextInput
-            onChangeText={(tripName) => this.setState({tripName})}
+            onChangeText={tripName => this.setState({tripName})}
             value={this.state.tripName}
             style={styles.input}
           />
         );
         editTripNameButtonText = 'Done';
       } else {
-        tripName = (
+        tripNameHeading = (
           <Text style={styles.headerTitle}>
             {this.state.tripName}
           </Text>
         );
         editTripNameButtonText = 'Edit';
-      };
+      }
 
       return (
         <View style={styles.mainContainer}>
           <View style={styles.header}>
-            {tripName}
+            {tripNameHeading}
             <TouchableHighlight onPress={() => this.setState({editingTripName: !this.state.editingTripName})}>
               <Text>
                 ({editTripNameButtonText})
@@ -157,7 +156,7 @@ class NewTripAddContacts extends Component {
               Chosen Contacts: {chosenContactsList}
             </Text>
             <Button
-              text='Add Contacts'
+              text="Add Contacts"
               onPress={this.toggleAddingContacts}
             />
             {sendButton}

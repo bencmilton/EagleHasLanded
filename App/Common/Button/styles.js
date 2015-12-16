@@ -1,7 +1,7 @@
 'use strict';
 
 import React, {
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 
 export default StyleSheet.create({
@@ -18,6 +18,6 @@ export default StyleSheet.create({
     width: 200,
   },
   text: {
-    color: '#3B3738'
-  }
+    color: '#3B3738',
+  },
 });

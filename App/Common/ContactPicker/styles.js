@@ -1,7 +1,7 @@
 'use strict';
 
 import React, {
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 
 export default StyleSheet.create({

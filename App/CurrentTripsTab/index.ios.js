@@ -3,7 +3,7 @@
 import React, {
   View,
   Text,
-  Component
+  Component,
 } from 'react-native';
 
 import styles from './styles';
