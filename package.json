@@ -1,0 +1,18 @@
+{
+  "name": "EagleHasLanded",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native start"
+  },
+  "dependencies": {
+    "react-native": "^0.16.0",
+    "react-native-contacts": "^0.1.5",
+    "react-native-google-places-autocomplete": "^1.1.6",
+    "react-native-message-composer": "0.0.3",
+    "react-timer-mixin": "^0.13.3"
+  },
+  "devDependencies": {
+    "react-native-cli": "^0.1.7"
+  }
+}
