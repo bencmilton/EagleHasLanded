@@ -3,14 +3,14 @@
 import React, {
   View,
   Component,
-  Text,
   DatePickerIOS,
   PropTypes,
 } from 'react-native';
 
 import NewTripAddContacts from '../AddContacts';
 import Button from '../../Common/Button';
-import SetLocation from '../SetLocation';
+import DetailCard from './components/DetailCard';
+import SetLocation from './components/SetLocation';
 import styles from './styles';
 
 const defaultProps = {
@@ -23,8 +23,8 @@ const defaultProps = {
 };
 
 const propTypes = {
-  departureDate: PropTypes.date.isRequired,
-  arrivalDate: PropTypes.date.isRequired,
+  departureDate: PropTypes.object,
+  arrivalDate: PropTypes.object,
   arrivalLocation: PropTypes.string,
   departureLocation: PropTypes.string,
   showDatePicker: PropTypes.bool,
@@ -41,14 +41,9 @@ class NewTripDetails extends Component {
       departureLocation: this.props.departureLocation,
       showDatePicker: this.props.showDatePicker,
       editingDateType: this.props.editingDateType,
+      showLocationInput: this.props.showLocationInput,
+      editingLocationType: this.props.editingLocationType,
     };
-  }
-  onDateChange = date => {
-    this.setState({
-      [this.state.editingDateType]: date,
-      showDatePicker: false,
-      editingDateType: null,
-    });
   }
   getCurrentPosition = value => {
     navigator.geolocation.getCurrentPosition(
@@ -67,6 +62,26 @@ class NewTripDetails extends Component {
       showDatePicker: !this.state.showDatePicker,
     });
   }
+  onDateChange = date => {
+    this.setState({
+      [this.state.editingDateType]: date,
+      showDatePicker: false,
+      editingDateType: null,
+    });
+  }
+  handleLocationChange = location => {
+    this.setState({
+      [this.state.editingLocationType]: location,
+      showLocationInput: false,
+      editingLocationType: null,
+    });
+  }
+  showLocationInput = type => {
+    this.setState({
+      editingLocationType: type,
+      showLocationInput: !this.state.showLocationInput,
+    });
+  }
   nextPage = () => {
     this.props.navigator.push({
       title: 'New Trip: Add Contacts',
@@ -75,41 +90,23 @@ class NewTripDetails extends Component {
     });
   }
   render() {
-    if (!this.state.showDatePicker) {
+    if (!this.state.showDatePicker && !this.state.showLocationInput) {
       return (
         <View style={styles.container}>
-          <View style={styles.card}>
-            <SetLocation
-              header="Set Departure Location"
-              onChangeText={departureLocation => this.setState({departureLocation})}
-              value={this.state.departureLocation}
-              placeholder="Enter a Location"
-              getCurrentPosition={this.getCurrentPosition.bind(null, 'departureLocation')}
-            />
-            <Button
-              text="Set Departure Date/Time"
-              onPress={this.showDatePicker.bind(null, 'departureDate')}
-            />
-            <Text style={styles.text}>
-              {this.state.departureDate.toLocaleDateString() + '\n' + this.state.departureDate.toLocaleTimeString()}
-            </Text>
-          </View>
-          <View style={styles.card}>
-            <SetLocation
-              header="Set Arrival Location"
-              onChangeText={arrivalLocation => this.setState({arrivalLocation})}
-              value={this.state.arrivalLocation}
-              placeholder="Enter a Location"
-              getCurrentPosition={this.getCurrentPosition.bind(null, 'arrivalLocation')}
-            />
-            <Button
-              text="Set Arrival Date/Time"
-              onPress={this.showDatePicker.bind(null, 'arrivalDate')}
-            />
-            <Text style={styles.text}>
-              {this.state.arrivalDate.toLocaleDateString() + '\n' + this.state.arrivalDate.toLocaleTimeString()}
-            </Text>
-          </View>
+          <DetailCard
+            type="Departure"
+            location={this.state.departureLocation}
+            selectLocation={this.showLocationInput.bind(null, 'departureLocation')}
+            date={this.state.departureDate}
+            selectDate={this.showDatePicker.bind(null, 'departureDate')}
+          />
+          <DetailCard
+            type="Arrival"
+            location={this.state.arrivalLocation}
+            selectLocation={this.showLocationInput.bind(null, 'arrivalLocation')}
+            date={this.state.arrivalDate}
+            selectDate={this.showDatePicker.bind(null, 'arrivalDate')}
+          />
           <Button
             text="Next"
             onPress={this.nextPage}
@@ -123,6 +120,17 @@ class NewTripDetails extends Component {
             date={this.state.editingDateType === 'arrivalDate' ? this.state.arrivalDate : this.state.departureDate}
             mode="datetime"
             onDateChange={this.onDateChange}
+          />
+        </View>
+      );
+    } else if (this.state.showLocationInput) {
+      return (
+        <View style={styles.locationInputContainer}>
+          <SetLocation
+            header={`Set ${this.state.editingLocationType === 'departureLocation' ? 'Departure' : 'Arrival'} Location`}
+            onChangeText={this.handleLocationChange}
+            placeholder="Enter a Location"
+            done={this.showLocationInput.bind(null, this.state.editingLocationType)}
           />
         </View>
       );

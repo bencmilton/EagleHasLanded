@@ -5,18 +5,22 @@ import React, {
 } from 'react-native';
 
 export default StyleSheet.create({
-  datePickerContainer: {
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 600,
-  },
   container: {
     padding: 30,
     marginTop: 65,
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: '#3B3738',
+  },
+  datePickerContainer: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 600,
+  },
+  locationInputContainer: {
+    alignItems: 'center',
+    height: 600,
   },
   card: {
     height: 200,

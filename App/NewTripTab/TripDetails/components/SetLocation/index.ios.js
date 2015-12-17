@@ -7,14 +7,15 @@ import React, {
   PropTypes,
 } from 'react-native';
 
-import GooglePlacesSearchInput from '../../Common/GooglePlacesSearchInput';
+import GooglePlacesSearchInput from '../../../../Common/GooglePlacesSearchInput';
+import Button from '../../../../Common/Button';
 import styles from './styles';
 
 const propTypes = {
   header: PropTypes.string.isRequired,
   onChangeText: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
+  done: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
 };
 
 class SetLocation extends Component {
@@ -24,10 +25,14 @@ class SetLocation extends Component {
         <Text style={styles.text}>
           {this.props.header}
         </Text>
+        <Button
+          style={styles.button}
+          text="Done"
+          onPress={this.props.done}
+        />
         <GooglePlacesSearchInput
-          onChangeText={this.props.onChangeText}
-          value={this.props.value}
           placeholder={this.props.placeholder}
+          onChangeText={this.props.onChangeText}
         />
       </View>
     );

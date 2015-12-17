@@ -10,7 +10,7 @@ import React, {
 import styles from './styles';
 
 const propTypes = {
-  style: PropTypes.style,
+  style: PropTypes.object,
   onPress: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
 };

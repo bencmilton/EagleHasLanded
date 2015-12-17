@@ -6,9 +6,9 @@ import React, {
 
 export default StyleSheet.create({
   container: {
-    height: 50,
-    width: 200,
-    marginBottom: 50,
+    height: 600,
+    width: 300,
+    marginTop: 70,
     flexDirection: 'column',
   },
   text: {
@@ -17,11 +17,8 @@ export default StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
   },
-  input: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
+  button: {
+    marginBottom: 20,
+    width: 75,
   },
 });

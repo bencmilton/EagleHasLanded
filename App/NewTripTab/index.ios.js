@@ -5,7 +5,7 @@ import React, {
   NavigatorIOS,
 } from 'react-native';
 
-import NewTripDetails from './TripDetails';
+import TripDetails from './TripDetails';
 import styles from './styles';
 
 class NewTripTab extends Component {
@@ -15,7 +15,7 @@ class NewTripTab extends Component {
         style={styles.navigationContainer}
         initialRoute={{
           title: 'New Trip: Details',
-          component: NewTripDetails,
+          component: TripDetails,
           backButtonTitle: 'Details',
         }}
       />
