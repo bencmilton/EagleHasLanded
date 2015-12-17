@@ -45,17 +45,6 @@ class NewTripDetails extends Component {
       editingLocationType: this.props.editingLocationType,
     };
   }
-  getCurrentPosition = value => {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        this.setState({
-          [value]: JSON.stringify([(position.coords.longitude).toFixed(3), (position.coords.latitude).toFixed(3)]),
-        });
-      },
-      error => console.error(error.message),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    );
-  }
   showDatePicker = type => {
     this.setState({
       editingDateType: type,
@@ -88,6 +77,17 @@ class NewTripDetails extends Component {
       component: NewTripAddContacts,
       backButtonTitle: 'Add Contacts',
     });
+  }
+  getCurrentPosition = value => {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        this.setState({
+          [value]: JSON.stringify([(position.coords.longitude).toFixed(3), (position.coords.latitude).toFixed(3)]),
+        });
+      },
+      error => console.error(error.message),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    );
   }
   render() {
     if (!this.state.showDatePicker && !this.state.showLocationInput) {

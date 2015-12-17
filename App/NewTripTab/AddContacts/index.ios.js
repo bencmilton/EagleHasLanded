@@ -63,7 +63,7 @@ class NewTripAddContacts extends Component {
             'Alert',
             'Message Sent!',
             [
-              {text: 'OK', onPress: () => console.log('OK Pressed!')},
+              {text: 'OK', onPress: () => {}},
             ]
           );
           break;
@@ -72,7 +72,7 @@ class NewTripAddContacts extends Component {
             'Alert',
             'User cancelled sending the message',
             [
-              {text: 'OK', onPress: () => console.log('OK Pressed!')},
+              {text: 'OK', onPress: () => {}},
             ]
           );
           break;
@@ -81,7 +81,7 @@ class NewTripAddContacts extends Component {
             'Alert',
             'Failed to send the message!',
             [
-              {text: 'OK', onPress: () => console.log('OK Pressed!')},
+              {text: 'OK', onPress: () => {}},
             ]
           );
           break;
@@ -90,7 +90,7 @@ class NewTripAddContacts extends Component {
             'Alert',
             'This device does not support sending texts',
             [
-              {text: 'OK', onPress: () => console.log('OK Pressed!')},
+              {text: 'OK', onPress: () => {}},
             ]
           );
           break;
@@ -99,7 +99,7 @@ class NewTripAddContacts extends Component {
             'Alert',
             'Something unexpected happened!',
             [
-              {text: 'OK', onPress: () => console.log('OK Pressed!')},
+              {text: 'OK', onPress: () => {}},
             ]
           );
           break;
