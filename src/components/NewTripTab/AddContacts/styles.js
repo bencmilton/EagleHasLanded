@@ -6,13 +6,26 @@ export default StyleSheet.create({
   mainContainer: {
     padding: 30,
     marginTop: 65,
-    alignItems: 'stretch',
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: '#3B3738',
+    height: 600,
+  },
+  card: {
+    height: 200,
+    width: 250,
+    backgroundColor: '#FAFAFA',
+    borderRadius: 10,
+    padding: 10,
+    margin: 15,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'gray',
     height: 30,
   },
   headerTitle: {
@@ -23,7 +36,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     fontSize: 20,
     height: 40,
-    borderColor: 'gray',
     backgroundColor: 'white',
     borderWidth: 1,
     width: 200,
@@ -35,9 +47,10 @@ export default StyleSheet.create({
   title: {
     fontWeight: '500',
   },
-  centering: {
+  activityIndicator: {
     alignItems: 'center',
     justifyContent: 'center',
+    height: 80,
   },
   button: {
     alignSelf: 'center',

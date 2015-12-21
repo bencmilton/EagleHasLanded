@@ -41,9 +41,9 @@ class ContactPicker extends Component {
         return contact;
       } else if (contact.familyName && contact.familyName.toUpperCase().indexOf(text.toUpperCase()) > -1) {
         return contact;
-      } else {
-        return false;
       }
+
+      return false;
     });
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});

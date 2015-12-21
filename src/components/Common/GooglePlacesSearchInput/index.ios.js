@@ -5,7 +5,7 @@ import React, {
   PropTypes,
 } from 'react-native';
 
-import { GOOGLE_PLACES_API_KEY } from '../../../environment';
+import { GOOGLE_PLACES_API_KEY } from '../../../../environment';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 const propTypes = {
@@ -39,7 +39,7 @@ class GooglePlacesSearchInput extends Component {
             color: '#1faadb',
           },
         }}
-        currentLocation={true} // Will add a 'Current location' button at the top of the predefined places list
+        currentLocation // ={true} Will add a 'Current location' button at the top of the predefined places list
         currentLocationLabel="Current location"
         currentLocationAPI="GooglePlacesSearch" // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
         GoogleReverseGeocodingQuery={{

@@ -3,12 +3,25 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+  outerContainer: {
+    alignItems: 'stretch',
+    position: 'relative',
+    flex: 1,
+  },
+  errorMessage: {
+    backgroundColor: 'red',
+    flexDirection: 'row',
+    padding: 3,
+  },
   container: {
-    padding: 30,
-    marginTop: 65,
+    justifyContent: 'center',
     flexDirection: 'column',
-    alignItems: 'center',
+    flex: 2,
     backgroundColor: '#3B3738',
+  },
+  errorMessageText: {
+    color: 'white',
+    textAlign: 'center',
   },
   datePickerContainer: {
     alignSelf: 'center',
